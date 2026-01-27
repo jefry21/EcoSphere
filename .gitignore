@@ -1,0 +1,32 @@
+# Root ignores
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node modules
+client/node_modules/
+server/node_modules/
+
+# Builds & dist
+client/build/
+server/build/
+dist/
+
+# Logs
+logs/
+*.log
+
+# Environment files
+server/.env
+server/.env.*
+client/.env.local
+client/.env.development.local
+client/.env.test.local
+client/.env.production.local
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+*.swo
