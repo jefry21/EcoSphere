@@ -15,9 +15,22 @@ app.use(morgan(config.nodeEnv === 'development' ? 'dev' : 'combined'));
 // Seguridad
 app.use(helmet());
 
-// CORS configurado específicamente
+// CORS configurado específicamente (soporta múltiples orígenes)
+const allowedOrigins = Array.isArray(config.clientUrl)
+  ? config.clientUrl
+  : String(config.clientUrl)
+      .split(',')
+      .map(o => o.trim())
+      .filter(Boolean);
+
 app.use(cors({
-  origin: config.clientUrl,
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true); // permitir herramientas como Postman
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error('Not allowed by CORS'));
+  },
   credentials: true,
   optionsSuccessStatus: 200
 }));
@@ -59,5 +72,5 @@ app.use(errorHandler);
 // Iniciar servidor
 app.listen(config.port, () => {
   console.log(`🚀 Server running on port ${config.port} in ${config.nodeEnv} mode`);
-  console.log(`📍 Accepting requests from: ${config.clientUrl}`);
+  console.log(`📍 Accepting requests from: ${allowedOrigins.join(', ')}`);
 });

@@ -75,6 +75,22 @@ const Main = () => {
           </div>
 
           <div className="col-12 col-sm-6 col-lg-4">
+            <div className="card h-100 shadow-sm hover-card" onClick={() => navigate('/ventas')} style={{ cursor: 'pointer' }}>
+              <div className="card-body text-center">
+                <div className="mb-3">
+                  <i className="bi bi-cart-check text-success" style={{ fontSize: '3rem' }}></i>
+                </div>
+                <h5 className="card-title fw-bold">Ventas</h5>
+                <p className="card-text text-muted">Registra y administra las ventas con cálculos de IVA automáticos.</p>
+                <button className="btn btn-success w-100" onClick={() => navigate('/ventas')}>
+                  <i className="bi bi-arrow-right-circle me-2"></i>
+                  Abrir módulo
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-12 col-sm-6 col-lg-4">
             <div className="card h-100 shadow-sm hover-card" onClick={() => handleAction(2)} style={{ cursor: 'pointer' }}>
               <div className="card-body text-center">
                 <div className="mb-3">
