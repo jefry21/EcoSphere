@@ -291,7 +291,7 @@ const VentasControls = () => {
   return (
     <div className="d-flex flex-column min-vh-100" style={{ backgroundColor: '#f0f2f5' }}>
       <AppNavbar />
-      <div className="container-fluid py-4">
+      <div className="container py-4">
         <div className="row mb-4">
           <div className="col-12">
             <div className="d-flex justify-content-between align-items-center">

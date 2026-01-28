@@ -34,20 +34,19 @@ const Main = () => {
 
   return (
     <div className="min-vh-100 d-flex flex-column" style={{
-      background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
-      backgroundAttachment: 'fixed'
+      backgroundColor: '#f6f8fb'
     }}>
       {/* Navigation Bar */}
       <AppNavbar />
 
       {/* Main Content */}
-      <div className="container-fluid flex-grow-1 py-4">
+      <div className="container flex-grow-1 py-4">
         <div className="row">
           <div className="col-12">
             <div className="d-flex justify-content-between align-items-center mb-4">
               <div>
-                <h1 className="display-4 fw-bold text-primary mb-0">Welcome to EcoSphere</h1>
-                <p className="text-muted">Gestiona tu contabilidad empresarial de manera eficiente</p>
+                <h1 className="display-5 fw-bold text-primary mb-1">Welcome to EcoSphere</h1>
+                <p className="text-muted mb-0">Gestiona tu contabilidad empresarial de manera eficiente</p>
               </div>
               <div className="d-none d-md-block">
                 <i className="bi bi-calculator text-success" style={{ fontSize: '4rem' }}></i>
@@ -59,7 +58,7 @@ const Main = () => {
         {/* Action Cards */}
         <div className="row g-4">
           <div className="col-12 col-sm-6 col-lg-4">
-            <div className="card h-100 shadow-sm hover-card" onClick={() => navigate('/iva')} style={{ cursor: 'pointer' }}>
+            <div className="card h-100 border-0 shadow-sm hover-card" onClick={() => navigate('/iva')} style={{ cursor: 'pointer' }}>
               <div className="card-body text-center">
                 <div className="mb-3">
                   <i className="bi bi-pencil-square text-info" style={{ fontSize: '3rem' }}></i>
@@ -75,7 +74,7 @@ const Main = () => {
           </div>
 
           <div className="col-12 col-sm-6 col-lg-4">
-            <div className="card h-100 shadow-sm hover-card" onClick={() => navigate('/ventas')} style={{ cursor: 'pointer' }}>
+            <div className="card h-100 border-0 shadow-sm hover-card" onClick={() => navigate('/ventas')} style={{ cursor: 'pointer' }}>
               <div className="card-body text-center">
                 <div className="mb-3">
                   <i className="bi bi-cart-check text-success" style={{ fontSize: '3rem' }}></i>
@@ -91,7 +90,7 @@ const Main = () => {
           </div>
 
           <div className="col-12 col-sm-6 col-lg-4">
-            <div className="card h-100 shadow-sm hover-card" onClick={() => handleAction(2)} style={{ cursor: 'pointer' }}>
+            <div className="card h-100 border-0 shadow-sm hover-card" onClick={() => handleAction(2)} style={{ cursor: 'pointer' }}>
               <div className="card-body text-center">
                 <div className="mb-3">
                   <i className="bi bi-receipt text-primary" style={{ fontSize: '3rem' }}></i>
@@ -107,7 +106,7 @@ const Main = () => {
           </div>
 
           <div className="col-12 col-sm-6 col-lg-4">
-            <div className="card h-100 shadow-sm hover-card" onClick={() => handleAction(3)} style={{ cursor: 'pointer' }}>
+            <div className="card h-100 border-0 shadow-sm hover-card" onClick={() => handleAction(3)} style={{ cursor: 'pointer' }}>
               <div className="card-body text-center">
                 <div className="mb-3">
                   <i className="bi bi-graph-up text-secondary" style={{ fontSize: '3rem' }}></i>
@@ -123,7 +122,7 @@ const Main = () => {
           </div>
 
           <div className="col-12 col-sm-6 col-lg-4">
-            <div className="card h-100 shadow-sm" style={{ opacity: 0.6, pointerEvents: 'none' }}>
+            <div className="card h-100 border-0 shadow-sm" style={{ opacity: 0.6, pointerEvents: 'none' }}>
               <div className="card-body text-center">
                 <div className="mb-3">
                   <i className="bi bi-clock-history text-muted" style={{ fontSize: '3rem' }}></i>
@@ -148,10 +147,12 @@ const Main = () => {
       </footer>
 
       <style jsx>{`
+        .hover-card {
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
         .hover-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
-          transition: all 0.3s ease;
+          transform: translateY(-6px);
+          box-shadow: 0 12px 28px rgba(0,0,0,0.12) !important;
         }
       `}</style>
     </div>

@@ -22,7 +22,7 @@ const AppNavbar = () => {
   return (
     <Navbar bg="primary" variant="dark" expand="lg" className="shadow">
       <div className="container">
-        <Navbar.Brand href="#">
+        <Navbar.Brand onClick={() => navigate('/main')} style={{ cursor: 'pointer' }}>
           <i className="bi bi-graph-up-arrow text-warning me-2" style={{ fontSize: '1.5rem' }}></i>
           EcoSphere
         </Navbar.Brand>

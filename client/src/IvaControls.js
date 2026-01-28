@@ -331,7 +331,7 @@ const IvaControls = () => {
   return (
     <div className="d-flex flex-column min-vh-100" style={{ backgroundColor: '#f0f2f5' }}>
       <AppNavbar />
-      <div className="container-fluid py-4">
+      <div className="container py-4">
         <div className="row mb-4">
           <div className="col-12">
             <div className="d-flex justify-content-between align-items-center">
@@ -562,33 +562,78 @@ const IvaControls = () => {
 
                 <hr />
 
+                {/* Resumen de Combustible */}
+                {formData.tipo === 'COMBUSTIBLE' && combustibleGuardado && (
+                  <div className="alert alert-warning d-flex align-items-center justify-content-between gap-3 flex-wrap">
+                    <div className="d-flex align-items-center gap-3">
+                      <i className="bi bi-fuel-pump-fill fs-3 text-warning"></i>
+                      <div>
+                        <div className="fw-semibold">Combustible seleccionado</div>
+                        <small className="text-muted">
+                          Tipo: {combustibleGuardado.tipoCombustible} · Galones: {combustibleGuardado.cantidadGalones}
+                        </small>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      className="btn btn-primary btn-sm shadow-sm"
+                      onClick={() => setShowCombustibleModal(true)}
+                    >
+                      <i className="bi bi-pencil-square me-1"></i>Editar combustible
+                    </button>
+                  </div>
+                )}
+
                 {/* Cálculos mostrados */}
                 {calculos.precioSinIVA !== 0 || calculos.ivaPercentaje !== 0 ? (
-                  <div className="alert alert-info p-3">
-                    <div className="row text-center">
-                      <div className="col-md-3">
-                        <small className="text-muted d-block">Precio Sin IVA</small>
-                        <h5 className="mb-0">{getSimboloMoneda()} {parseFloat(calculos.precioSinIVA).toFixed(2)}</h5>
-                      </div>
-                      <div className="col-md-3">
-                        <small className="text-muted d-block">Tasa de IVA</small>
-                        <h5 className="mb-0">{calculos.tasaIVA}%</h5>
-                      </div>
-                      <div className="col-md-3">
-                        <small className="text-muted d-block">Total Sin Impuesto</small>
-                        <h5 className="mb-0">{getSimboloMoneda()} {parseFloat(calculos.totalSinImpuesto).toFixed(2)}</h5>
-                      </div>
-                      <div className="col-md-3">
-                        <small className="text-muted d-block">IVA</small>
-                        <h5 className="mb-0">{getSimboloMoneda()} {(parseFloat(formData.precioTotal || 0) - parseFloat(calculos.totalSinImpuesto)).toFixed(2)}</h5>
-                      </div>
-                      {calculos.idp > 0 && (
-                        <div className="col-md-3 mt-2">
-                          <small className="text-muted d-block">IDP (Combustible)</small>
-                          <h5 className="mb-0">{getSimboloMoneda()} {parseFloat(calculos.idp).toFixed(2)}</h5>
-                        </div>
-                      )}
+                  <div className="row g-3">
+                    <div className="col-12 col-md-3">
+                      <label className="form-label fw-semibold">Precio Sin IVA</label>
+                      <input
+                        type="text"
+                        className="form-control bg-light"
+                        readOnly
+                        value={`${getSimboloMoneda()} ${parseFloat(calculos.precioSinIVA).toFixed(2)}`}
+                      />
                     </div>
+                    <div className="col-12 col-md-3">
+                      <label className="form-label fw-semibold">Tasa de IVA</label>
+                      <input
+                        type="text"
+                        className="form-control bg-light"
+                        readOnly
+                        value={`${calculos.tasaIVA}%`}
+                      />
+                    </div>
+                    <div className="col-12 col-md-3">
+                      <label className="form-label fw-semibold">Total Sin Impuesto</label>
+                      <input
+                        type="text"
+                        className="form-control bg-light"
+                        readOnly
+                        value={`${getSimboloMoneda()} ${parseFloat(calculos.totalSinImpuesto).toFixed(2)}`}
+                      />
+                    </div>
+                    <div className="col-12 col-md-3">
+                      <label className="form-label fw-semibold">IVA</label>
+                      <input
+                        type="text"
+                        className="form-control bg-light"
+                        readOnly
+                        value={`${getSimboloMoneda()} ${(parseFloat(formData.precioTotal || 0) - parseFloat(calculos.totalSinImpuesto || 0)).toFixed(2)}`}
+                      />
+                    </div>
+                    {calculos.idp > 0 && (
+                      <div className="col-12 col-md-3">
+                        <label className="form-label fw-semibold">IDP (Combustible)</label>
+                        <input
+                          type="text"
+                          className="form-control bg-light"
+                          readOnly
+                          value={`${getSimboloMoneda()} ${parseFloat(calculos.idp).toFixed(2)}`}
+                        />
+                      </div>
+                    )}
                   </div>
                 ) : (
                   <p className="text-muted text-center">Ingrese los datos para ver los cálculos</p>
